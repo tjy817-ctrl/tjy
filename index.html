@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>初煦 Café - 線上訂購系統</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -29,11 +28,9 @@
             }
         }
     </script>
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
@@ -48,7 +45,6 @@
 </head>
 <body class="min-h-screen flex flex-col justify-between">
 
-    <!-- 網頁導覽列 -->
     <header class="bg-white shadow-sm border-b border-chuxu-gold/20 sticky top-0 z-40">
         <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-3">
@@ -66,9 +62,7 @@
         </div>
     </header>
 
-    <!-- 主內容區 -->
     <main class="max-w-6xl mx-auto px-4 py-8 w-full flex-grow">
-        <!-- 標題 -->
         <div class="text-center mb-10">
             <h2 class="text-3xl md:text-4xl font-bold text-chuxu-dark mb-3">美味預約 ‧ 初煦餐桌</h2>
             <p class="text-chuxu-gray max-w-lg mx-auto text-sm md:text-base">
@@ -76,13 +70,10 @@
             </p>
         </div>
 
-        <!-- 訂購主表單 -->
         <form id="orderForm" onsubmit="handleSubmit(event)" class="grid grid-cols-1 lg:grid-cols-12 gap-8">
             
-            <!-- 左側：商品選購區 -->
             <div class="lg:col-span-7 space-y-8">
                 
-                <!-- 1. 精緻甜點區 -->
                 <div class="bg-white p-6 rounded-2xl shadow-sm border border-chuxu-gold/10">
                     <div class="flex items-center space-x-2 pb-4 mb-6 border-b border-gray-100">
                         <i class="fa-solid fa-cake-slice text-chuxu-gold text-xl"></i>
@@ -90,7 +81,6 @@
                     </div>
                     
                     <div class="space-y-6" id="dessertContainer">
-                        <!-- 商品：榛果聖多諾黑 -->
                         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center p-3 rounded-xl hover:bg-chuxu-white/30 transition-colors gap-4">
                             <div class="flex-1">
                                 <h4 class="font-bold text-chuxu-dark text-base sm:text-lg">榛果聖多諾黑</h4>
@@ -104,7 +94,6 @@
                             </div>
                         </div>
 
-                        <!-- 商品：初煦小山園千層 -->
                         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center p-3 rounded-xl hover:bg-chuxu-white/30 transition-colors gap-4">
                             <div class="flex-1">
                                 <h4 class="font-bold text-chuxu-dark text-base sm:text-lg">初煦小山園千層 <span class="text-xs text-white bg-chuxu-gold px-1.5 py-0.5 rounded ml-2">人氣</span></h4>
@@ -118,7 +107,6 @@
                             </div>
                         </div>
 
-                        <!-- 商品：法式經典檸檬塔 -->
                         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center p-3 rounded-xl hover:bg-chuxu-white/30 transition-colors gap-4">
                             <div class="flex-1">
                                 <h4 class="font-bold text-chuxu-dark text-base sm:text-lg">法式經典檸檬塔</h4>
@@ -132,7 +120,6 @@
                             </div>
                         </div>
 
-                        <!-- 商品：草莓巴斯克蛋糕 -->
                         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center p-3 rounded-xl hover:bg-chuxu-white/30 transition-colors gap-4">
                             <div class="flex-1">
                                 <h4 class="font-bold text-chuxu-dark text-base sm:text-lg">草莓巴斯克蛋糕 <span class="text-xs text-white bg-red-400 px-1.5 py-0.5 rounded ml-2">主廚推薦</span></h4>
@@ -146,7 +133,6 @@
                             </div>
                         </div>
 
-                        <!-- 商品：微醺流心酒心可麗露 (2入) -->
                         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center p-3 rounded-xl hover:bg-chuxu-white/30 transition-colors gap-4">
                             <div class="flex-1">
                                 <h4 class="font-bold text-chuxu-dark text-base sm:text-lg">微醺流心酒心可麗露 (2入)</h4>
@@ -162,7 +148,6 @@
                     </div>
                 </div>
 
-                <!-- 2. 精品咖啡與飲品區 -->
                 <div class="bg-white p-6 rounded-2xl shadow-sm border border-chuxu-gold/10">
                     <div class="flex items-center space-x-2 pb-4 mb-6 border-b border-gray-100">
                         <i class="fa-solid fa-mug-hot text-chuxu-gold text-xl"></i>
@@ -170,7 +155,6 @@
                     </div>
 
                     <div class="space-y-6" id="drinkContainer">
-                        <!-- 商品：初煦配方手沖 -->
                         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center p-3 rounded-xl hover:bg-chuxu-white/30 transition-colors gap-4">
                             <div class="flex-1">
                                 <h4 class="font-bold text-chuxu-dark text-base sm:text-lg">初煦配方手沖</h4>
@@ -184,7 +168,6 @@
                             </div>
                         </div>
 
-                        <!-- 商品：燕麥燕窩拉花拿鐵 -->
                         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center p-3 rounded-xl hover:bg-chuxu-white/30 transition-colors gap-4">
                             <div class="flex-1">
                                 <h4 class="font-bold text-chuxu-dark text-base sm:text-lg">燕麥燕窩拉花拿鐵</h4>
@@ -198,7 +181,6 @@
                             </div>
                         </div>
 
-                        <!-- 商品：開心果馥芮白 -->
                         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center p-3 rounded-xl hover:bg-chuxu-white/30 transition-colors gap-4">
                             <div class="flex-1">
                                 <h4 class="font-bold text-chuxu-dark text-base sm:text-lg">開心果馥芮白</h4>
@@ -212,7 +194,6 @@
                             </div>
                         </div>
 
-                        <!-- 商品：夕陽玫瑰氣泡美式 -->
                         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center p-3 rounded-xl hover:bg-chuxu-white/30 transition-colors gap-4">
                             <div class="flex-1">
                                 <h4 class="font-bold text-chuxu-dark text-base sm:text-lg">夕陽玫瑰氣泡美式</h4>
@@ -226,7 +207,6 @@
                             </div>
                         </div>
 
-                        <!-- 商品：小農焙茶鮮奶茶 -->
                         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center p-3 rounded-xl hover:bg-chuxu-white/30 transition-colors gap-4">
                             <div class="flex-1">
                                 <h4 class="font-bold text-chuxu-dark text-base sm:text-lg">小農焙茶鮮奶茶</h4>
@@ -244,10 +224,8 @@
 
             </div>
 
-            <!-- 右側：顧客資訊與結帳區 -->
             <div class="lg:col-span-5 space-y-8">
                 
-                <!-- 3. 顧客與外送資訊 -->
                 <div class="bg-white p-6 rounded-2xl shadow-sm border border-chuxu-gold/10">
                     <div class="flex items-center space-x-2 pb-4 mb-6 border-b border-gray-100">
                         <i class="fa-solid fa-user text-chuxu-gold text-xl"></i>
@@ -265,7 +243,11 @@
                             <input type="tel" id="custPhone" required placeholder="例如：0912345678" class="w-full px-4 py-2.5 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-1 focus:ring-chuxu-gold focus:border-chuxu-gold bg-chuxu-lightBg">
                         </div>
 
-                        <!-- 取貨方式切換 -->
+                        <div>
+                            <label for="custEmail" class="block text-xs font-semibold text-chuxu-dark mb-1">電子郵件 / Email <span class="text-red-500">*</span></label>
+                            <input type="email" id="custEmail" required placeholder="請輸入您的 Email 以接收訂單明細" class="w-full px-4 py-2.5 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-1 focus:ring-chuxu-gold focus:border-chuxu-gold bg-chuxu-lightBg">
+                        </div>
+
                         <div>
                             <label class="block text-xs font-semibold text-chuxu-dark mb-2">領取方式 / Delivery Method <span class="text-red-500">*</span></label>
                             <div class="grid grid-cols-2 gap-3">
@@ -284,13 +266,11 @@
                             </div>
                         </div>
 
-                        <!-- 隱藏的地址欄位 -->
                         <div id="addressGroup" class="hidden">
                             <label for="custAddress" class="block text-xs font-semibold text-chuxu-dark mb-1">外送地址 / Address <span class="text-red-500">*</span></label>
                             <input type="text" id="custAddress" placeholder="請填寫詳細配送地址" class="w-full px-4 py-2.5 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-1 focus:ring-chuxu-gold focus:border-chuxu-gold bg-chuxu-lightBg">
                         </div>
 
-                        <!-- 日期與時間 -->
                         <div class="grid grid-cols-2 gap-3">
                             <div>
                                 <label for="pickupDate" class="block text-xs font-semibold text-chuxu-dark mb-1">指定日期 / Date <span class="text-red-500">*</span></label>
@@ -300,7 +280,7 @@
                                 <label for="pickupTime" class="block text-xs font-semibold text-chuxu-dark mb-1">指定時間 / Time <span class="text-red-500">*</span></label>
                                 <select id="pickupTime" required class="w-full px-4 py-2.5 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-1 focus:ring-chuxu-gold focus:border-chuxu-gold bg-chuxu-lightBg">
                                     <option value="">選擇時間</option>
-                                    <option value="11:30">11:30 (最旱)</option>
+                                    <option value="11:30">11:30 (最早)</option>
                                     <option value="13:00">13:00</option>
                                     <option value="14:30">14:30</option>
                                     <option value="16:00">16:00</option>
@@ -317,19 +297,14 @@
                     </div>
                 </div>
 
-                <!-- 4. 訂單摘要 -->
                 <div class="bg-white p-6 rounded-2xl shadow-sm border border-chuxu-gold/20 sticky lg:top-24">
                     <div class="flex items-center space-x-2 pb-4 mb-4 border-b border-gray-100">
                         <i class="fa-solid fa-receipt text-chuxu-gold text-xl"></i>
                         <h3 class="text-xl font-bold text-chuxu-dark">訂單明細 <span class="text-xs text-chuxu-gray font-normal ml-2">Summary</span></h3>
                     </div>
-
-                    <!-- 明細清單 -->
                     <div class="max-h-48 overflow-y-auto mb-4 divide-y divide-gray-50 pr-1" id="summaryList">
                         <p class="text-sm text-chuxu-gray text-center py-6">尚未選擇任何商品</p>
                     </div>
-
-                    <!-- 計算區 -->
                     <div class="border-t border-gray-100 pt-4 space-y-2 text-sm">
                         <div class="flex justify-between text-chuxu-gray">
                             <span>品項小計</span>
@@ -344,20 +319,15 @@
                             <span class="text-chuxu-gold text-xl" id="grandTotalVal">NT$ 0</span>
                         </div>
                     </div>
-
-                    <!-- 送出按鈕 -->
                     <button type="submit" class="w-full mt-6 bg-chuxu-dark text-white py-3.5 rounded-xl font-bold tracking-wider hover:bg-chuxu-gold transition-colors duration-300 flex items-center justify-center space-x-2 shadow-md">
                         <span>預約初煦美味</span>
                         <i class="fa-solid fa-chevron-right text-xs"></i>
                     </button>
                 </div>
-
             </div>
-
         </form>
     </main>
 
-    <!-- 頁尾 -->
     <footer class="bg-chuxu-dark text-white py-8 mt-12 border-t-4 border-chuxu-gold">
         <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="text-center md:text-left">
@@ -371,60 +341,51 @@
         </div>
     </footer>
 
-    <!-- 成功彈出視窗 Modal (不使用原生 alert) -->
     <div id="successModal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden">
         <div class="bg-white max-w-md w-full rounded-2xl overflow-hidden shadow-2xl border border-chuxu-gold/30 transform transition-all scale-95 duration-300 opacity-0" id="modalCard">
-            <!-- 裝飾頂部 -->
             <div class="h-2 bg-chuxu-gold"></div>
-            
             <div class="p-8 text-center">
                 <div class="w-16 h-16 bg-chuxu-white/30 rounded-full flex items-center justify-center mx-auto mb-4 border border-chuxu-gold/20">
                     <i class="fa-solid fa-circle-check text-chuxu-gold text-3xl"></i>
                 </div>
-                
-                <h3 class="text-2xl font-bold text-chuxu-dark mb-2">確認送出訂單</h3>
-                <p class="text-sm text-chuxu-gray mb-6">點擊下方按鈕後，系統將為您開啟電子郵件程式，向店鋪發送預訂明細：</p>
-                
-                <!-- 預約明細快照 -->
+                <h3 class="text-2xl font-bold text-chuxu-dark mb-2">訂單確認</h3>
+                <p class="text-sm text-chuxu-gray mb-6">點擊下方按鈕，系統將自動為您提交預訂明細：</p>
                 <div class="bg-chuxu-lightBg p-4 rounded-xl text-left text-xs space-y-2 text-chuxu-dark border border-gray-100 mb-6">
                     <div class="flex justify-between"><span class="text-chuxu-gray">顧客姓名：</span><span id="modalName" class="font-bold"></span></div>
                     <div class="flex justify-between"><span class="text-chuxu-gray">聯絡電話：</span><span id="modalPhone" class="font-bold"></span></div>
                     <div class="flex justify-between"><span class="text-chuxu-gray">領取日期：</span><span id="modalDate" class="font-bold"></span></div>
                     <div class="flex justify-between"><span class="text-chuxu-gray">預訂總額：</span><span id="modalTotal" class="font-bold text-chuxu-gold text-sm"></span></div>
                 </div>
-
                 <button type="button" onclick="sendOrderEmail()" class="w-full py-3 bg-chuxu-dark text-white rounded-xl font-semibold hover:bg-chuxu-gold transition-colors flex items-center justify-center space-x-2 shadow-sm">
                     <i class="fa-solid fa-paper-plane"></i>
-                    <span>送出並寄發電子郵件</span>
+                    <span>確認送出預約表單</span>
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- JavaScript 邏輯 -->
     <script>
-        // 設定今天為日期選擇器的最小值 (不能預訂過去的日期)
+        let isDelivery = false;
+
+        // 設定今天為日期選擇器的最小值
         window.onload = function() {
             const today = new Date().toISOString().split('T')[0];
             document.getElementById('pickupDate').min = today;
-            document.getElementById('pickupDate').value = today;
-        };
-
-        // 增減數量的功能
-        function changeQty(inputId, delta) {
-            const input = document.getElementById(inputId);
-            let val = parseInt(input.value) + delta;
-            if (val < 0) val = 0;
-            input.value = val;
-            
-            // 更新右側訂單明細
-            calculateOrder();
         }
 
-        // 外送方式切換
-        let isDelivery = false;
-        function toggleDelivery(deliveryActive) {
-            isDelivery = deliveryActive;
+        // 改變商品數量控制
+        function changeQty(inputId, amount) {
+            const input = document.getElementById(inputId);
+            let currentVal = parseInt(input.value) || 0;
+            currentVal += amount;
+            if (currentVal < 0) currentVal = 0;
+            input.value = currentVal;
+            updateTotals();
+        }
+
+        // 物流切換控制
+        function toggleDelivery(status) {
+            isDelivery = status;
             const addressGroup = document.getElementById('addressGroup');
             const custAddress = document.getElementById('custAddress');
             const labelPickup = document.getElementById('labelPickup');
@@ -433,9 +394,7 @@
 
             if (isDelivery) {
                 addressGroup.classList.remove('hidden');
-                custAddress.setAttribute('required', 'required');
-                
-                // 樣式更新
+                custAddress.required = true;
                 labelDelivery.classList.add('border-chuxu-gold', 'bg-chuxu-white/10');
                 labelDelivery.classList.remove('border-gray-200');
                 deliveryIcon.classList.add('text-chuxu-gold');
@@ -445,10 +404,8 @@
                 labelPickup.classList.add('border-gray-200');
             } else {
                 addressGroup.classList.add('hidden');
-                custAddress.removeAttribute('required');
+                custAddress.required = false;
                 custAddress.value = '';
-
-                // 樣式更新
                 labelPickup.classList.add('border-chuxu-gold', 'bg-chuxu-white/10');
                 labelPickup.classList.remove('border-gray-200');
 
@@ -457,116 +414,95 @@
                 deliveryIcon.classList.remove('text-chuxu-gold');
                 deliveryIcon.classList.add('text-chuxu-gray');
             }
-            calculateOrder();
+            updateTotals();
         }
 
-        // 計算整筆訂單
-        function calculateOrder() {
-            const summaryList = document.getElementById('summaryList');
-            const subtotalVal = document.getElementById('subtotalVal');
-            const shippingVal = document.getElementById('shippingVal');
-            const grandTotalVal = document.getElementById('grandTotalVal');
-            
-            const allInputs = document.querySelectorAll('input[type="number"]');
-            let itemsHTML = '';
+        // 更新及動態計算明細與總金額
+        function updateTotals() {
             let subtotal = 0;
+            let itemsHtml = "";
+            const allInputs = document.querySelectorAll('input[type="number"]');
 
             allInputs.forEach(input => {
-                const qty = parseInt(input.value);
+                const qty = parseInt(input.value) || 0;
                 if (qty > 0) {
                     const name = input.getAttribute('data-name');
                     const price = parseInt(input.getAttribute('data-price'));
                     const itemTotal = price * qty;
                     subtotal += itemTotal;
 
-                    itemsHTML += `
-                        <div class="flex justify-between items-center py-2 text-sm text-chuxu-dark">
+                    itemsHtml += `
+                        <div class="flex justify-between py-2 text-sm text-chuxu-dark">
                             <div class="flex-1 pr-2">
-                                <p class="font-medium">${name}</p>
-                                <p class="text-[10px] text-chuxu-gray">NT$ ${price.toLocaleString()} × ${qty}</p>
+                                <span class="font-medium">${name}</span>
+                                <span class="text-xs text-chuxu-gray block">NT$ ${price.toLocaleString()} × ${qty}</span>
                             </div>
-                            <span class="font-bold">NT$ ${itemTotal.toLocaleString()}</span>
+                            <span class="font-semibold text-right">NT$ ${itemTotal.toLocaleString()}</span>
                         </div>
                     `;
                 }
             });
 
-            const shippingFee = isDelivery ? 150 : 0;
-            const grandTotal = subtotal + shippingFee;
-
+            const summaryList = document.getElementById('summaryList');
             if (subtotal === 0) {
                 summaryList.innerHTML = `<p class="text-sm text-chuxu-gray text-center py-6">尚未選擇任何商品</p>`;
             } else {
-                summaryList.innerHTML = itemsHTML;
+                summaryList.innerHTML = itemsHtml;
             }
 
-            subtotalVal.innerText = `NT$ ${subtotal.toLocaleString()}`;
-            shippingVal.innerText = `NT$ ${shippingFee.toLocaleString()}`;
-            grandTotalVal.innerText = `NT$ ${grandTotal.toLocaleString()}`;
+            const shipping = isDelivery && subtotal > 0 ? 150 : 0;
+            const grandTotal = subtotal + shipping;
+
+            document.getElementById('subtotalVal').innerText = `NT$ ${subtotal.toLocaleString()}`;
+            document.getElementById('shippingVal').innerText = `NT$ ${shipping.toLocaleString()}`;
+            document.getElementById('grandTotalVal').innerText = `NT$ ${grandTotal.toLocaleString()}`;
         }
 
-        // 提交表單，準備發送
+        // 當點擊大按鈕時驗證並彈出 Modal 清單
         function handleSubmit(event) {
             event.preventDefault();
 
-            // 1. 檢查是否有選擇至少一件商品
-            const allInputs = document.querySelectorAll('input[type="number"]');
+            // 檢查是否選購商品
             let totalQty = 0;
-            allInputs.forEach(input => {
-                totalQty += parseInt(input.value);
-            });
-
+            document.querySelectorAll('input[type="number"]').forEach(i => totalQty += parseInt(i.value) || 0);
             if (totalQty === 0) {
-                const summaryList = document.getElementById('summaryList');
-                summaryList.innerHTML = `
-                    <div class="text-center py-4 bg-red-50 text-red-600 rounded-lg text-xs font-semibold border border-red-100">
-                        <i class="fa-solid fa-triangle-exclamation mr-1"></i> 請至少點購一項商品
-                    </div>
-                `;
+                alert("請至少選擇一項美味商品再送出預約！");
                 return;
             }
 
-            const name = document.getElementById('custName').value;
-            const phone = document.getElementById('custPhone').value;
-            const date = document.getElementById('pickupDate').value;
-            const time = document.getElementById('pickupTime').value;
-            const total = document.getElementById('grandTotalVal').innerText;
+            // 帶入快照資訊
+            document.getElementById('modalName').innerText = document.getElementById('custName').value;
+            document.getElementById('modalPhone').innerText = document.getElementById('custPhone').value;
+            document.getElementById('modalDate').innerText = document.getElementById('pickupDate').value;
+            document.getElementById('modalTotal').innerText = document.getElementById('grandTotalVal').innerText;
 
-            document.getElementById('modalName').innerText = name;
-            document.getElementById('modalPhone').innerText = phone;
-            document.getElementById('modalDate').innerText = `${date} ${time}`;
-            document.getElementById('modalTotal').innerText = total;
-
+            // 顯示 Modal 開啟動畫
             const modal = document.getElementById('successModal');
             const card = document.getElementById('modalCard');
-            
             modal.classList.remove('hidden');
+            modal.classList.add('flex');
             setTimeout(() => {
                 card.classList.remove('scale-95', 'opacity-0');
                 card.classList.add('scale-100', 'opacity-100');
             }, 50);
         }
 
-     
-        // 調用 Email 客戶端發送郵件
-       // 調用 Google 表單背景拋接發送 (已針對你的表單網址客製化)
+        // 調用 Google 表單背景拋接發送（完美融合新欄位 entry 代號）
         function sendOrderEmail() {
             const name = document.getElementById('custName').value;
             const phone = document.getElementById('custPhone').value;
+            const email = document.getElementById('custEmail').value; 
             const date = document.getElementById('pickupDate').value;
             const time = document.getElementById('pickupTime').value;
             const deliveryMethod = isDelivery ? "專車冷配" : "門市自取";
             const address = isDelivery ? document.getElementById('custAddress').value : "無";
             const notes = document.getElementById('custNotes').value;
-            const subtotal = document.getElementById('subtotalVal').innerText;
-            const shipping = document.getElementById('shippingVal').innerText;
             const grandTotal = document.getElementById('grandTotalVal').innerText;
 
-            // 組合商品明細
             let itemsDetailText = "";
             const allInputs = document.querySelectorAll('input[type="number"]');
             allInputs.forEach(input => {
-                const qty = parseInt(input.value);
+                const qty = parseInt(input.value) || 0;
                 if (qty > 0) {
                     const itemName = input.getAttribute('data-name');
                     const itemPrice = parseInt(input.getAttribute('data-price'));
@@ -574,55 +510,53 @@
                 }
             });
 
-            // 整合時間與物流資訊
             const deliveryInfo = `${deliveryMethod} | 時間：${date} ${time} | 地址：${address} | 備註：${notes || '無'}`;
 
-            // 使用你的專屬 Google 表單拋接網址
-            const formActionUrl = "https://docs.google.com/forms/d/e/1FAIpQLSfWYvMB21jv9gXFX3v2GFMl5LZQDh4wg396qlWw6KJCIbv2SA/formResponse";
-            
-            // 根據你提供的 entry 代號精準對接
-            const formData = new FormData();
-            formData.append("entry.1423916369", name);             // 欄位 1：姓名
-            formData.append("entry.191736628", phone);              // 欄位 2：電話
-            formData.append("entry.1043262282", deliveryInfo);      // 欄位 3：領取方式時間與備註
-            formData.append("entry.1422399737", itemsDetailText);   // 欄位 4：訂單商品明細
-            formData.append("entry.1261457385", grandTotal);        // 欄位 5：結帳總金額
+            // 1. 建立一個隱藏的 iframe 避免網頁提交後跳轉離開
+            let iframe = document.getElementById('hidden_iframe');
+            if (!iframe) {
+                iframe = document.createElement('iframe');
+                iframe.name = 'hidden_iframe';
+                iframe.id = 'hidden_iframe';
+                iframe.style.display = 'none';
+                document.body.appendChild(iframe);
+            }
 
-            // 使用 no-cors 模式默默在外流發送給 Google 表單
-            fetch(formActionUrl, {
-                method: "POST",
-                body: formData,
-                mode: "no-cors"
-            })
-            .then(() => {
-                // 發送成功後關閉彈跳視窗，並清空表單
-                closeSuccessModal();
-                alert("預約成功！初煦 Café 已收到您的訂單明細。");
-            })
-            .catch((error) => {
-                console.error("發送失敗:", error);
-                alert("系統忙碌中，請稍後再試，或直接電話聯繫店鋪。");
-            });
+            // 2. 建立一個虛擬表單
+            const targetForm = document.createElement('form');
+            targetForm.action = "https://docs.google.com/forms/d/e/1FAIpQLSfWYvMB21jv9gXFX3v2GFMl5LZQDh4wg396qlWw6KJCIbv2SA/formResponse";
+            targetForm.method = "POST";
+            targetForm.target = "hidden_iframe"; 
+
+            // 3. 填入資料（已經精準對接您提供的所有正確 entry 號碼）
+            const fields = {
+                "entry.1682985205": email,             // 電子郵件 / Email
+                "entry.1423916369": name,              // 姓名
+                "entry.191736628": phone,              // 電話
+                "entry.1043262282": deliveryInfo,      // 領取方式時間與備註
+                "entry.1422399737": itemsDetailText,   // 訂單商品明細
+                "entry.1261457385": grandTotal         // 結帳總金額
+            };
+
+            for (const key in fields) {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = key;
+                input.value = fields[key];
+                targetForm.appendChild(input);
+            }
+
+            // 4. 送出並從畫面上移除虛擬表單
+            document.body.appendChild(targetForm);
+            targetForm.submit();
+            document.body.removeChild(targetForm);
+
+            // 5. 關閉彈窗並重置網頁狀態
+            closeSuccessModal();
+            alert("預約成功！初煦 Café 與您皆會收到訂單明細副本。");
         }
 
-       // 使用 no-cors 模式默默在外流發送給 Google 表單
-            fetch(formActionUrl, {
-                method: "POST",
-                body: formData,
-                mode: "no-cors"
-            })
-            .then(() => {
-                // 發送成功後關閉彈跳視窗，並清空表單
-                closeSuccessModal();
-                alert("預約成功！初煦 Café 已收到您的訂單明細。");
-            })
-            .catch((error) => {
-                console.error("發送失敗:", error);
-                alert("系統忙碌中，請稍後再試，或直接電話聯繫店鋪。");
-            });
-        }
-
-        // 關閉成功彈窗並重置 (已修正重複部分)
+        // 關閉成功彈窗並重置
         function closeSuccessModal() {
             const modal = document.getElementById('successModal');
             const card = document.getElementById('modalCard');
@@ -633,19 +567,15 @@
             setTimeout(() => {
                 modal.classList.add('hidden');
                 modal.classList.remove('flex');
-                // 重置表單
-                document.getElementById('custName').value = '';
-                document.getElementById('custPhone').value = '';
-                document.getElementById('custAddress').value = '';
-                document.getElementById('custNotes').value = '';
-                // 重置購物車數量
+                // 重置所有表單輸入
+                document.getElementById('orderForm').reset();
+                // 手動重置購物車數字顯示與重新計算總額
                 const allInputs = document.querySelectorAll('input[type="number"]');
                 allInputs.forEach(input => input.value = 0);
+                toggleDelivery(false); // 預設回到自取
                 updateTotals();
             }, 300);
         }
     </script>
-</body>
-</html>
 </body>
 </html>
