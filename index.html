@@ -547,7 +547,9 @@
             }, 50);
         }
 
+     
         // 調用 Email 客戶端發送郵件
+       // 調用 Google 表單背景拋接發送 (已針對你的表單網址客製化)
         function sendOrderEmail() {
             const name = document.getElementById('custName').value;
             const phone = document.getElementById('custPhone').value;
@@ -568,48 +570,59 @@
                 if (qty > 0) {
                     const itemName = input.getAttribute('data-name');
                     const itemPrice = parseInt(input.getAttribute('data-price'));
-                    itemsDetailText += `• ${itemName}：NT$ ${itemPrice.toLocaleString()} × ${qty} = NT$ ${(itemPrice * qty).toLocaleString()}\n`;
+                    itemsDetailText += `• ${itemName}：NT$ ${itemPrice.toLocaleString()} × ${qty}\n`;
                 }
             });
 
-            // 郵件正文內容
-            const emailAddress = "tjy.817@gmail.com";
-            const mailSubject = `【初煦 Café】線上訂單預約 - 訂購人：${name}`;
+            // 整合時間與物流資訊
+            const deliveryInfo = `${deliveryMethod} | 時間：${date} ${time} | 地址：${address} | 備註：${notes || '無'}`;
+
+            // 使用你的專屬 Google 表單拋接網址
+            const formActionUrl = "https://docs.google.com/forms/d/e/1FAIpQLSfWYvMB21jv9gXFX3v2GFMl5LZQDh4wg396qlWw6KJCIbv2SA/formResponse";
             
-            const mailBody = `親愛的 初煦 Café：
+            // 根據你提供的 entry 代號精準對接
+            const formData = new FormData();
+            formData.append("entry.1423916369", name);             // 欄位 1：姓名
+            formData.append("entry.191736628", phone);              // 欄位 2：電話
+            formData.append("entry.1043262282", deliveryInfo);      // 欄位 3：領取方式時間與備註
+            formData.append("entry.1422399737", itemsDetailText);   // 欄位 4：訂單商品明細
+            formData.append("entry.1261457385", grandTotal);        // 欄位 5：結帳總金額
 
-您有一筆新的線上預約訂單，明細如下：
-
-【訂購人資訊】
-姓名：${name}
-聯絡電話：${phone}
-
-【物流配送】
-領取方式：${deliveryMethod}
-${isDelivery ? `外送地址：${address}\n` : ''}預約時間：${date} ${time}
-
-【訂單明細】
-${itemsDetailText}
------------------------------
-品項小計：${subtotal}
-運費 / 服務費：${shipping}
-結帳總金額：${grandTotal}
-
-【備註說明】
-${notes || '無'}
-
----
-本信件由「初煦 Café」線上訂購系統自動產生。請儘速與顧客聯繫確認訂單，謝謝！`;
-
-            // 開啟 mailto 連結
-            const mailtoUrl = `mailto:${emailAddress}?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
-            window.location.href = mailtoUrl;
-
-            // 關閉 Modal
-            closeSuccessModal();
+            // 使用 no-cors 模式默默在外流發送給 Google 表單
+            fetch(formActionUrl, {
+                method: "POST",
+                body: formData,
+                mode: "no-cors"
+            })
+            .then(() => {
+                // 發送成功後關閉彈跳視窗，並清空表單
+                closeSuccessModal();
+                alert("預約成功！初煦 Café 已收到您的訂單明細。");
+            })
+            .catch((error) => {
+                console.error("發送失敗:", error);
+                alert("系統忙碌中，請稍後再試，或直接電話聯繫店鋪。");
+            });
         }
 
-        // 關閉成功彈窗並重置
+       // 使用 no-cors 模式默默在外流發送給 Google 表單
+            fetch(formActionUrl, {
+                method: "POST",
+                body: formData,
+                mode: "no-cors"
+            })
+            .then(() => {
+                // 發送成功後關閉彈跳視窗，並清空表單
+                closeSuccessModal();
+                alert("預約成功！初煦 Café 已收到您的訂單明細。");
+            })
+            .catch((error) => {
+                console.error("發送失敗:", error);
+                alert("系統忙碌中，請稍後再試，或直接電話聯繫店鋪。");
+            });
+        }
+
+        // 關閉成功彈窗並重置 (已修正重複部分)
         function closeSuccessModal() {
             const modal = document.getElementById('successModal');
             const card = document.getElementById('modalCard');
@@ -619,11 +632,20 @@ ${notes || '無'}
             
             setTimeout(() => {
                 modal.classList.add('hidden');
-                document.getElementById('orderForm').reset();
-                toggleDelivery(false); 
-                calculateOrder(); 
+                modal.classList.remove('flex');
+                // 重置表單
+                document.getElementById('custName').value = '';
+                document.getElementById('custPhone').value = '';
+                document.getElementById('custAddress').value = '';
+                document.getElementById('custNotes').value = '';
+                // 重置購物車數量
+                const allInputs = document.querySelectorAll('input[type="number"]');
+                allInputs.forEach(input => input.value = 0);
+                updateTotals();
             }, 300);
         }
     </script>
+</body>
+</html>
 </body>
 </html>
