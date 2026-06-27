@@ -488,43 +488,73 @@
         }
 
         // 調用 Google 表單背景拋接發送（完美融合新欄位 entry 代號）
-        function sendOrderEmail(name, phone, email, delivery, details, total) {
-    // 1. 建立一個隱藏的虛擬表單
-    const targetForm = document.createElement('form');
-    targetForm.method = 'POST';
-    
-    // 💡 【重要！】請把下面網址中的 YOUR_FORM_ID_HERE 改成你剛剛複製的那串長長的表單真實 ID
-    targetForm.action = "https://docs.google.com/forms/d/e/13Hu8NqkWh6uimpTTuoIpw_kgI1xCofxS0aTANtupbRE/formResponse";
-    targetForm.style.display = 'none';
+        function sendOrderEmail() {
+            const name = document.getElementById('custName').value;
+            const phone = document.getElementById('custPhone').value;
+            const email = document.getElementById('custEmail').value; 
+            const date = document.getElementById('pickupDate').value;
+            const time = document.getElementById('pickupTime').value;
+            const deliveryMethod = isDelivery ? "專車冷配" : "門市自取";
+            const address = isDelivery ? document.getElementById('custAddress').value : "無";
+            const notes = document.getElementById('custNotes').value;
+            const grandTotal = document.getElementById('grandTotalVal').innerText;
 
-    // 2. 打包要送給 Google 表單的資料
-    // 💡 【重要！】請把左邊的 entry.數字 改成你剛剛查到的 6 個真實對應代碼
-    const fields = {
-        "entry.1682985205": email,     // 電子郵件 / Email
-        "entry.1423916369": name,      // 姓名
-        "entry.191736628": phone,     // 電話
-        "entry.1043262282": delivery,  // 領取方式&時間 (已修正變數名)
-        "entry.1422399737": details,   // 訂單明細 (已修正變數名)
-        "entry.1261457385": total      // 總金額 (已修正變數名)
-    };
+            let itemsDetailText = "";
+            const allInputs = document.querySelectorAll('input[type="number"]');
+            allInputs.forEach(input => {
+                const qty = parseInt(input.value) || 0;
+                if (qty > 0) {
+                    const itemName = input.getAttribute('data-name');
+                    const itemPrice = parseInt(input.getAttribute('data-price'));
+                    itemsDetailText += `• ${itemName}：NT$ ${itemPrice.toLocaleString()} × ${qty}\n`;
+                }
+            });
 
-    for (const key in fields) {
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = key;
-        input.value = fields[key];
-        targetForm.appendChild(input);
-    }
+            const deliveryInfo = `${deliveryMethod} | 時間：${date} ${time} | 地址：${address} | 備註：${notes || '無'}`;
 
-    // 3. 送出虛擬表單
-    document.body.appendChild(targetForm);
-    targetForm.submit();
-    document.body.removeChild(targetForm);
+            // 1. 建立一個隱藏的 iframe 避免網頁提交後跳轉離開
+            let iframe = document.getElementById('hidden_iframe');
+            if (!iframe) {
+                iframe = document.createElement('iframe');
+                iframe.name = 'hidden_iframe';
+                iframe.id = 'hidden_iframe';
+                iframe.style.display = 'none';
+                document.body.appendChild(iframe);
+            }
 
-    // 4. 關閉彈窗並重置狀態
-    closeSuccessModal();
-    alert("預約成功！初煦 Café 與您皆會收到訂單明細副本。");
-}
+            // 2. 建立一個虛擬表單
+            const targetForm = document.createElement('form');
+            targetForm.action = "https://docs.google.com/forms/d/e/1FAIpQLSfWYvMB21jv9gXFX3v2GFMl5LZQDh4wg396qlWw6KJCIbv2SA/formResponse";
+            targetForm.method = "POST";
+            targetForm.target = "hidden_iframe"; 
+
+            // 3. 填入資料（已經精準對接您提供的所有正確 entry 號碼）
+            const fields = {
+                "entry.1682985205": email,             // 電子郵件 / Email
+                "entry.1423916369": name,              // 姓名
+                "entry.191736628": phone,              // 電話
+                "entry.1043262282": deliveryInfo,      // 領取方式時間&備註
+                "entry.1422399737": itemsDetailText,   // 訂單商品明細
+                "entry.1261457385": grandTotal         // 結帳總金額
+            };
+
+            for (const key in fields) {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = key;
+                input.value = fields[key];
+                targetForm.appendChild(input);
+            }
+
+            // 4. 送出並從畫面上移除虛擬表單
+            document.body.appendChild(targetForm);
+            targetForm.submit();
+            document.body.removeChild(targetForm);
+
+            // 5. 關閉彈窗並重置網頁狀態
+            closeSuccessModal();
+            alert("預約成功！初煦 Café 與您皆會收到訂單明細副本。");
+        }
 
         // 關閉成功彈窗並重置
         function closeSuccessModal() {
